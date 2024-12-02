@@ -58,10 +58,386 @@
             background: #3498db;
             color: white;
         }
+        
+        .notification {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            display: none;
+        }
+        
+        .catalog-container {
+            margin-top: 100px;
+        }
+        
+        .catalog-filters {
+            margin-bottom: 20px;
+        }
+        
+        .catalog-filters h2 {
+            margin-top: 0;
+        }
+        
+        .filter-group {
+            margin-bottom: 20px;
+        }
+        
+        .filter-group h3 {
+            margin-top: 0;
+        }
+        
+        .filter-group ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .filter-group li {
+            margin-bottom: 10px;
+        }
+        
+        .filter-group a {
+            text-decoration: none;
+            color: #337ab7;
+        }
+        
+        .filter-group a.active {
+            color: #23527c;
+        }
+        
+        .price-range {
+            margin-bottom: 20px;
+        }
+        
+        .price-range input[type="range"] {
+            width: 100%;
+        }
+        
+        .price-inputs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .price-inputs input[type="number"] {
+            width: 45%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        .catalog-content {
+            margin-bottom: 20px;
+        }
+        
+        .catalog-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .catalog-header h1 {
+            margin-top: 0;
+        }
+        
+        .catalog-sort {
+            margin-left: 20px;
+        }
+        
+        .catalog-sort select {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .product-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #337ab7;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        .product-badge.new {
+            background-color: #5cb85c;
+        }
+        
+        .product-badge.sale {
+            background-color: #d9534f;
+        }
+        
+        .product-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .product-card h3 {
+            margin-top: 10px;
+        }
+        
+        .product-features {
+            margin-bottom: 10px;
+        }
+        
+        .product-features span {
+            margin-right: 10px;
+        }
+        
+        .product-features i {
+            margin-right: 5px;
+        }
+        
+        .price {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .price s {
+            font-weight: normal;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .add-to-cart-btn {
+            background-color: #337ab7;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .add-to-cart-btn:hover {
+            background-color: #23527c;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .pagination a {
+            padding: 10px 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #337ab7;
+        }
+        
+        .pagination a.active {
+            background-color: #337ab7;
+            color: #fff;
+        }
+        
+        .filters-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .clear-filters {
+            background-color: #337ab7;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .filter-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .filter-content {
+            margin-bottom: 20px;
+        }
+        
+        .custom-checkbox {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .custom-checkbox input[type="checkbox"] {
+            display: none;
+        }
+        
+        .custom-checkbox .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        .custom-checkbox .checkmark:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background-color: #337ab7;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .custom-checkbox input[type="checkbox"]:checked + .checkmark:after {
+            display: block;
+        }
+        
+        .custom-checkbox .label {
+            margin-left: 30px;
+        }
+        
+        .custom-checkbox .count {
+            margin-left: 10px;
+            color: #666;
+        }
+        
+        .price-range {
+            margin-bottom: 20px;
+        }
+        
+        .price-inputs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .price-input {
+            width: 45%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        .price-separator {
+            margin: 0 10px;
+        }
+        
+        .range-slider {
+            position: relative;
+            width: 100%;
+            height: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .range-slider input[type="range"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            margin: 0;
+            padding: 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #337ab7;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+        
+        .range-slider input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .range-slider input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .range-slider .slider-track {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background-color: #337ab7;
+            border-radius: 5px;
+        }
+        
+        .filter-search {
+            position: relative;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        .filter-search input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        .filter-search i {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            color: #337ab7;
+        }
+        
+        .apply-filters {
+            background-color: #337ab7;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-    <!-- Шапка сайта -->
+    <!-- Уведомление -->
+    <div id="notification" class="notification"></div>
+
     <header class="header">
         <div class="container">
             <nav class="nav">
@@ -69,102 +445,290 @@
                 <ul class="menu">
                     <li><a href="index.html">Главная</a></li>
                     <li><a href="catalog.html">Каталог</a></li>
-                    <li><a href="cart.html">Корзина</a></li>
-                    <li><a href="index.html#contacts">Контакты</a></li>
+                    <li><a href="cart.html" class="cart-link">Корзина <span class="cart-counter">0</span></a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main style="margin-top: 100px;">
+    <main class="catalog-container">
         <div class="container">
-            <h1>Каталог товаров</h1>
-            
             <!-- Фильтры -->
             <div class="catalog-filters">
-                <div class="filter-group">
-                    <label for="category">Категория</label>
-                    <select id="category">
-                        <option value="">Все категории</option>
-                        <option value="paints">Краски</option>
-                        <option value="varnishes">Лаки</option>
-                        <option value="primers">Грунтовки</option>
-                    </select>
+                <div class="filters-header">
+                    <h2>Фильтры</h2>
+                    <button class="clear-filters">Сбросить</button>
                 </div>
+                
                 <div class="filter-group">
-                    <label for="brand">Производитель</label>
-                    <select id="brand">
-                        <option value="">Все производители</option>
-                        <option value="tikkurila">Tikkurila</option>
-                        <option value="dulux">Dulux</option>
-                        <option value="teknos">Teknos</option>
-                    </select>
+                    <div class="filter-title">
+                        <h3>Категории</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-content">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" checked>
+                            <span class="checkmark"></span>
+                            <span class="label">Все товары</span>
+                            <span class="count">(42)</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="label">Краски</span>
+                            <span class="count">(16)</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="label">Лаки</span>
+                            <span class="count">(12)</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="label">Грунтовки</span>
+                            <span class="count">(8)</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="label">Эмали</span>
+                            <span class="count">(6)</span>
+                        </label>
+                    </div>
                 </div>
+
                 <div class="filter-group">
-                    <label for="price">Цена</label>
-                    <select id="price">
-                        <option value="">Любая</option>
-                        <option value="0-1000">До 1000 ₽</option>
-                        <option value="1000-3000">1000 - 3000 ₽</option>
-                        <option value="3000+">От 3000 ₽</option>
-                    </select>
+                    <div class="filter-title">
+                        <h3>Цена</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-content">
+                        <div class="price-range">
+                            <div class="price-inputs">
+                                <div class="price-input">
+                                    <span class="currency">₽</span>
+                                    <input type="number" placeholder="От" value="0" min="0">
+                                </div>
+                                <div class="price-separator">—</div>
+                                <div class="price-input">
+                                    <span class="currency">₽</span>
+                                    <input type="number" placeholder="До" value="10000" max="100000">
+                                </div>
+                            </div>
+                            <div class="range-slider">
+                                <input type="range" class="range-min" min="0" max="10000" value="0">
+                                <input type="range" class="range-max" min="0" max="10000" value="10000">
+                                <div class="slider-track"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="filter-group">
+                    <div class="filter-title">
+                        <h3>Производитель</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-content">
+                        <div class="filter-search">
+                            <input type="text" placeholder="Поиск производителя">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <label class="custom-checkbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="label">Tikkurila</span>
+                            <span class="count">(12)</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="label">Dulux</span>
+                            <span class="count">(8)</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="label">Teknos</span>
+                            <span class="count">(6)</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="label">Caparol</span>
+                            <span class="count">(4)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <div class="filter-title">
+                        <h3>Применение</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-content">
+                        <label class="custom-checkbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="label">Для внутренних работ</span>
+                            <span class="count">(24)</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="label">Для наружных работ</span>
+                            <span class="count">(18)</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="label">Универсальные</span>
+                            <span class="count">(10)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <div class="filter-title">
+                        <h3>Объем</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-content">
+                        <label class="custom-checkbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="label">0.9 л</span>
+                            <span class="count">(15)</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="label">2.7 л</span>
+                            <span class="count">(12)</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="label">5 л</span>
+                            <span class="count">(8)</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span class="label">10 л</span>
+                            <span class="count">(7)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button class="apply-filters">Применить фильтры</button>
             </div>
 
-            <!-- Товары -->
-            <div class="catalog-grid">
+            <!-- Каталог товаров -->
+            <div class="catalog-content">
+                <div class="catalog-header">
+                    <h1>Каталог товаров</h1>
+                    <div class="catalog-sort">
+                        <select>
+                            <option value="popular">По популярности</option>
+                            <option value="price-asc">По цене (возрастание)</option>
+                            <option value="price-desc">По цене (убывание)</option>
+                            <option value="name">По названию</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="products-grid">
+                    <!-- Товар 1 -->
                     <div class="product-card">
-                        <img src="images/paint1.jpg" alt="Краска интерьерная белая">
+                        <div class="product-badge">Хит</div>
+                        <img src="images/product1.jpg" alt="Краска интерьерная">
                         <h3>Краска интерьерная белая</h3>
-                        <p class="price">2500 ₽</p>
-                        <button class="btn" onclick="addToCart('Краска интерьерная белая', 2500, 'images/paint1.jpg')">В корзину</button>
+                        <p>Матовая краска для стен и потолков, влагостойкая</p>
+                        <div class="product-features">
+                            <span><i class="fas fa-paint-roller"></i> 10 м²/л</span>
+                            <span><i class="fas fa-clock"></i> 2 часа</span>
+                        </div>
+                        <span class="price">2500 ₽</span>
+                        <button class="add-to-cart-btn" 
+                                data-name="Краска интерьерная белая" 
+                                data-price="2500" 
+                                data-image="images/product1.jpg">
+                            В корзину
+                        </button>
                     </div>
+
+                    <!-- Товар 2 -->
                     <div class="product-card">
-                        <img src="images/paint2.jpg" alt="Эмаль для пола">
-                        <h3>Эмаль для пола</h3>
-                        <p class="price">1800 ₽</p>
-                        <button class="btn" onclick="addToCart('Эмаль для пола', 1800, 'images/paint2.jpg')">В корзину</button>
+                        <div class="product-badge new">Новинка</div>
+                        <img src="images/product2.jpg" alt="Лак паркетный">
+                        <h3>Лак паркетный глянцевый</h3>
+                        <p>Износостойкий лак для деревянных поверхностей</p>
+                        <div class="product-features">
+                            <span><i class="fas fa-paint-roller"></i> 8 м²/л</span>
+                            <span><i class="fas fa-clock"></i> 4 часа</span>
+                        </div>
+                        <span class="price">3200 ₽</span>
+                        <button class="add-to-cart-btn" 
+                                data-name="Лак паркетный глянцевый" 
+                                data-price="3200" 
+                                data-image="images/product2.jpg">
+                            В корзину
+                        </button>
                     </div>
+
+                    <!-- Товар 3 -->
                     <div class="product-card">
-                        <img src="images/paint3.jpg" alt="Грунтовка универсальная">
+                        <img src="images/product3.jpg" alt="Грунтовка">
                         <h3>Грунтовка универсальная</h3>
-                        <p class="price">950 ₽</p>
-                        <button class="btn" onclick="addToCart('Грунтовка универсальная', 950, 'images/paint3.jpg')">В корзину</button>
+                        <p>Глубокопроникающая грунтовка для подготовки поверхностей</p>
+                        <div class="product-features">
+                            <span><i class="fas fa-paint-roller"></i> 12 м²/л</span>
+                            <span><i class="fas fa-clock"></i> 1 час</span>
+                        </div>
+                        <span class="price">1800 ₽</span>
+                        <button class="add-to-cart-btn" 
+                                data-name="Грунтовка универсальная" 
+                                data-price="1800" 
+                                data-image="images/product3.jpg">
+                            В корзину
+                        </button>
                     </div>
+
+                    <!-- Товар 4 -->
                     <div class="product-card">
-                        <img src="images/paint4.jpg" alt="Краска фасадная">
-                        <h3>Краска фасадная</h3>
-                        <p class="price">3200 ₽</p>
-                        <button class="btn" onclick="addToCart('Краска фасадная', 3200, 'images/paint4.jpg')">В корзину</button>
-                    </div>
-                    <div class="product-card">
-                        <img src="images/paint5.jpg" alt="Эмаль алкидная">
-                        <h3>Эмаль алкидная</h3>
-                        <p class="price">1600 ₽</p>
-                        <button class="btn" onclick="addToCart('Эмаль алкидная', 1600, 'images/paint5.jpg')">В корзину</button>
-                    </div>
-                    <div class="product-card">
-                        <img src="images/paint6.jpg" alt="Антисептик для дерева">
-                        <h3>Антисептик для дерева</h3>
-                        <p class="price">2100 ₽</p>
-                        <button class="btn" onclick="addToCart('Антисептик для дерева', 2100, 'images/paint6.jpg')">В корзину</button>
+                        <div class="product-badge sale">-20%</div>
+                        <img src="images/product4.jpg" alt="Эмаль">
+                        <h3>Эмаль ПФ-115</h3>
+                        <p>Универсальная алкидная эмаль для наружных и внутренних работ</p>
+                        <div class="product-features">
+                            <span><i class="fas fa-paint-roller"></i> 10 м²/л</span>
+                            <span><i class="fas fa-clock"></i> 24 часа</span>
+                        </div>
+                        <span class="price"><s>2400 ₽</s> 1920 ₽</span>
+                        <button class="add-to-cart-btn" 
+                                data-name="Эмаль ПФ-115" 
+                                data-price="1920" 
+                                data-image="images/product4.jpg">
+                            В корзину
+                        </button>
                     </div>
                 </div>
-            </div>
 
-            <!-- Пагинация -->
-            <div class="pagination">
-                <button class="active">1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>...</button>
-                <button>10</button>
+                <!-- Пагинация -->
+                <div class="pagination">
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                </div>
             </div>
         </div>
     </main>
 
-    <!-- Подвал -->
     <footer class="footer">
         <div class="container">
             <p>&copy; 2024 ЛакоКраска. Все права защищены.</p>

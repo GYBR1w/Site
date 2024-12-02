@@ -20,6 +20,33 @@ document.addEventListener('DOMContentLoaded', function() {
             addToCart(name, price, image);
         });
     });
+
+    // Обработка сворачивания/разворачивания фильтров
+    const filterTitles = document.querySelectorAll('.filter-title');
+    
+    filterTitles.forEach(title => {
+        const content = title.nextElementSibling;
+        // По умолчанию скрываем контент
+        content.style.display = 'none';
+        
+        title.addEventListener('click', () => {
+            // Переключаем класс active для иконки
+            title.classList.toggle('active');
+            
+            // Плавно показываем/скрываем контент
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                content.style.maxHeight = content.scrollHeight + 'px';
+                content.style.opacity = '1';
+            } else {
+                content.style.maxHeight = '0';
+                content.style.opacity = '0';
+                setTimeout(() => {
+                    content.style.display = 'none';
+                }, 300);
+            }
+        });
+    });
 });
 
 // Добавление товара в корзину
@@ -128,31 +155,72 @@ function removeFromCart(name) {
 
 // Показ уведомлений
 function showNotification(message) {
+    // Удаляем предыдущее уведомление, если оно есть
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+
+    // Создаем новое уведомление
     const notification = document.createElement('div');
-    notification.className = 'notification';
+    notification.className = 'notification show';
     notification.textContent = message;
     document.body.appendChild(notification);
-    
+
+    // Удаляем уведомление через 3 секунды
     setTimeout(() => {
-        notification.remove();
+        notification.classList.remove('show');
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
     }, 3000);
 }
 
-// Оформление заказа
+// Обработка формы заказа
 document.addEventListener('DOMContentLoaded', function() {
-    const checkoutBtn = document.querySelector('.checkout-btn');
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', function() {
-            if (cart.length === 0) {
-                showNotification('Корзина пуста');
-                return;
-            }
-            
-            showNotification('Заказ оформлен');
-            cart = [];
-            localStorage.setItem('cart', JSON.stringify(cart));
-            displayCart();
-            updateCartCounter();
-        });
+    const orderForm = document.getElementById('order-form');
+    if (orderForm) {
+        orderForm.addEventListener('submit', handleOrderSubmit);
     }
 });
+
+// Функция обработки отправки формы
+function handleOrderSubmit(e) {
+    e.preventDefault();
+    
+    if (cart.length === 0) {
+        showNotification('Корзина пуста');
+        return;
+    }
+    
+    // Собираем данные формы
+    const formData = {
+        name: document.getElementById('name').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        address: document.getElementById('address').value,
+        items: cart,
+        total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+    };
+    
+    console.log('Данные заказа:', formData);
+    
+    // Очищаем корзину
+    cart = [];
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    // Показываем сообщение об успехе
+    showNotification('Готово! Скоро с вами свяжется оператор для подтверждения заказа');
+    
+    // Очищаем форму
+    this.reset();
+    
+    // Обновляем отображение
+    displayCart();
+    updateCartCounter();
+    
+    // Перенаправляем на главную через 3 секунды
+    setTimeout(() => {
+        window.location.href = 'index.html';
+    }, 3000);
+}

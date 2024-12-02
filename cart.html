@@ -177,7 +177,23 @@
                 <span>Итого:</span>
                 <span class="cart-total">0 ₽</span>
             </div>
-            <button class="checkout-btn">Оформить заказ</button>
+            
+            <form id="order-form" class="order-form">
+                <h3>Оформление заказа</h3>
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" name="phone" placeholder="Телефон" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="address" name="address" placeholder="Адрес доставки" required></textarea>
+                </div>
+                <button type="submit" class="checkout-btn">Оформить заказ</button>
+            </form>
         </div>
     </main>
 
