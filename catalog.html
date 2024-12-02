@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог - ЛакоКраска</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .catalog-filters {
+            padding: 2rem;
+            background: #f9f9f9;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .filter-group {
+            margin-bottom: 1rem;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .filter-group select {
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .pagination button {
+            padding: 0.5rem 1rem;
+            border: 1px solid #3498db;
+            background: white;
+            color: #3498db;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .pagination button.active {
+            background: #3498db;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">ЛакоКраска</div>
+                <ul class="menu">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="catalog.html">Каталог</a></li>
+                    <li><a href="cart.html">Корзина</a></li>
+                    <li><a href="index.html#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main style="margin-top: 100px;">
+        <div class="container">
+            <h1>Каталог товаров</h1>
+            
+            <!-- Фильтры -->
+            <div class="catalog-filters">
+                <div class="filter-group">
+                    <label for="category">Категория</label>
+                    <select id="category">
+                        <option value="">Все категории</option>
+                        <option value="paints">Краски</option>
+                        <option value="varnishes">Лаки</option>
+                        <option value="primers">Грунтовки</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="brand">Производитель</label>
+                    <select id="brand">
+                        <option value="">Все производители</option>
+                        <option value="tikkurila">Tikkurila</option>
+                        <option value="dulux">Dulux</option>
+                        <option value="teknos">Teknos</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="price">Цена</label>
+                    <select id="price">
+                        <option value="">Любая</option>
+                        <option value="0-1000">До 1000 ₽</option>
+                        <option value="1000-3000">1000 - 3000 ₽</option>
+                        <option value="3000+">От 3000 ₽</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Товары -->
+            <div class="catalog-grid">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <img src="images/paint1.jpg" alt="Краска интерьерная белая">
+                        <h3>Краска интерьерная белая</h3>
+                        <p class="price">2500 ₽</p>
+                        <button class="btn" onclick="addToCart('Краска интерьерная белая', 2500, 'images/paint1.jpg')">В корзину</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/paint2.jpg" alt="Эмаль для пола">
+                        <h3>Эмаль для пола</h3>
+                        <p class="price">1800 ₽</p>
+                        <button class="btn" onclick="addToCart('Эмаль для пола', 1800, 'images/paint2.jpg')">В корзину</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/paint3.jpg" alt="Грунтовка универсальная">
+                        <h3>Грунтовка универсальная</h3>
+                        <p class="price">950 ₽</p>
+                        <button class="btn" onclick="addToCart('Грунтовка универсальная', 950, 'images/paint3.jpg')">В корзину</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/paint4.jpg" alt="Краска фасадная">
+                        <h3>Краска фасадная</h3>
+                        <p class="price">3200 ₽</p>
+                        <button class="btn" onclick="addToCart('Краска фасадная', 3200, 'images/paint4.jpg')">В корзину</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/paint5.jpg" alt="Эмаль алкидная">
+                        <h3>Эмаль алкидная</h3>
+                        <p class="price">1600 ₽</p>
+                        <button class="btn" onclick="addToCart('Эмаль алкидная', 1600, 'images/paint5.jpg')">В корзину</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/paint6.jpg" alt="Антисептик для дерева">
+                        <h3>Антисептик для дерева</h3>
+                        <p class="price">2100 ₽</p>
+                        <button class="btn" onclick="addToCart('Антисептик для дерева', 2100, 'images/paint6.jpg')">В корзину</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Пагинация -->
+            <div class="pagination">
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>...</button>
+                <button>10</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 ЛакоКраска. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

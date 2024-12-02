@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЛакоКраска - Магазин лакокрасочных материалов</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Уведомление -->
+    <div id="notification" class="notification"></div>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">ЛакоКраска</div>
+                <ul class="menu">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="catalog.html">Каталог</a></li>
+                    <li><a href="cart.html" class="cart-link">Корзина <span class="cart-counter">0</span></a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Главный баннер -->
+    <section class="banner">
+        <div class="container">
+            <h1>Качественные краски для ваших проектов</h1>
+            <p>Широкий выбор лакокрасочных материалов от ведущих производителей</p>
+            <a href="catalog.html" class="btn">Перейти в каталог</a>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fas fa-paint-roller"></i>
+                    <h3>Широкий ассортимент</h3>
+                    <p>Более 1000 наименований красок, лаков и грунтовок</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-truck"></i>
+                    <h3>Быстрая доставка</h3>
+                    <p>Доставка по городу в день заказа</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-medal"></i>
+                    <h3>Гарантия качества</h3>
+                    <p>Только сертифицированная продукция</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Хиты продаж -->
+    <section class="bestsellers">
+        <div class="container">
+            <h2>Хиты продаж</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="images/product1.jpg" alt="Краска интерьерная">
+                    <h3>Краска интерьерная белая</h3>
+                    <p>Матовая краска для стен и потолков</p>
+                    <span class="price">2500 ₽</span>
+                    <button class="add-to-cart-btn" 
+                            data-name="Краска интерьерная белая" 
+                            data-price="2500" 
+                            data-image="images/product1.jpg">
+                        В корзину
+                    </button>
+                </div>
+                <div class="product-card">
+                    <img src="images/product2.jpg" alt="Лак паркетный">
+                    <h3>Лак паркетный глянцевый</h3>
+                    <p>Износостойкий лак для деревянных поверхностей</p>
+                    <span class="price">3200 ₽</span>
+                    <button class="add-to-cart-btn" 
+                            data-name="Лак паркетный глянцевый" 
+                            data-price="3200" 
+                            data-image="images/product2.jpg">
+                        В корзину
+                    </button>
+                </div>
+                <div class="product-card">
+                    <img src="images/product3.jpg" alt="Грунтовка">
+                    <h3>Грунтовка универсальная</h3>
+                    <p>Глубокопроникающая грунтовка</p>
+                    <span class="price">1800 ₽</span>
+                    <button class="add-to-cart-btn" 
+                            data-name="Грунтовка универсальная" 
+                            data-price="1800" 
+                            data-image="images/product3.jpg">
+                        В корзину
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- О компании -->
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>О нашем магазине</h2>
+                    <p>Мы специализируемся на продаже высококачественных лакокрасочных материалов для внутренних и наружных работ. Наш магазин предлагает широкий ассортимент красок, лаков, грунтовок и других отделочных материалов от ведущих производителей.</p>
+                    <p>Наши специалисты помогут подобрать оптимальное решение для ваших задач и проконсультируют по вопросам применения материалов.</p>
+                    <ul class="about-features">
+                        <li><i class="fas fa-check"></i> Только проверенные производители</li>
+                        <li><i class="fas fa-check"></i> Консультации специалистов</li>
+                        <li><i class="fas fa-check"></i> Доставка по всему городу</li>
+                        <li><i class="fas fa-check"></i> Гибкая система скидок</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img src="images/about-store.jpg" alt="О нашем магазине ЛакоКраска">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section class="reviews">
+        <div class="container">
+            <h2>Отзывы наших клиентов</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Отличное качество красок, быстрая доставка! Очень доволен покупкой, буду обращаться еще."</p>
+                    <span class="author">- Александр П.</span>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Большой выбор, приятные цены. Менеджер помог подобрать краску для фасада, все отлично!"</p>
+                    <span class="author">- Елена С.</span>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Заказывал грунтовку и краску для ремонта. Качество отличное, цена порадовала."</p>
+                    <span class="author">- Дмитрий К.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts" class="contacts">
+        <div class="container">
+            <h2>Контакты</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <h3>Телефон</h3>
+                    <p>+7 (999) 123-45-67</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>info@lakokraska.ru</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Адрес</h3>
+                    <p>г. Москва, ул. Примерная, д. 1</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>Режим работы</h3>
+                    <p>Пн-Пт: 9:00 - 20:00</p>
+                    <p>Сб-Вс: 10:00 - 18:00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>ЛакоКраска</h3>
+                    <p>Магазин лакокрасочных материалов</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Навигация</h3>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="cart.html">Корзина</a></li>
+                        <li><a href="#contacts">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Мы в соцсетях</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ЛакоКраска. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script>console.log('Script loaded')</script>
+</body>
+</html>
