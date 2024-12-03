@@ -51,19 +51,44 @@ document.addEventListener('DOMContentLoaded', function() {
     // Функция для отображения товаров на странице
     async function displayProducts() {
         const productsGrid = document.querySelector('.products-grid');
-        if (!productsGrid) return;
+        if (!productsGrid) {
+            console.error('Не найден элемент .products-grid');
+            return;
+        }
 
-        const products = await getProducts();
-        
-        productsGrid.innerHTML = products.map(product => `
-            <div class="product-card" data-id="${product.id}">
-                <img src="${product.image_url}" alt="${product.name}">
-                <h3>${product.name}</h3>
-                <p class="product-description">${product.description}</p>
-                <p class="product-price">${product.price} ₽</p>
-                <button class="add-to-cart-btn" onclick="addToCart(${product.id})">В корзину</button>
-            </div>
-        `).join('');
+        try {
+            console.log('Загрузка товаров...');
+            const products = await getProducts();
+            console.log('Полученные товары:', products);
+            
+            productsGrid.innerHTML = products.map(product => `
+                <div class="product-card" data-id="${product.id}">
+                    ${product.is_new ? '<div class="product-badge new">Новинка</div>' : ''}
+                    ${product.is_hit ? '<div class="product-badge">Хит</div>' : ''}
+                    ${product.discount ? '<div class="product-badge sale">-${product.discount}%</div>' : ''}
+                    <img src="${product.image_url}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p class="product-description">${product.description}</p>
+                    <div class="product-features">
+                        <span><i class="fas fa-paint-roller"></i> ${product.coverage_area} м²/л</span>
+                        <span><i class="fas fa-clock"></i> ${product.drying_time} часа</span>
+                    </div>
+                    <p class="product-price">${product.price} ₽</p>
+                    <button class="add-to-cart-btn" 
+                            onclick="addToCart('${product.name}', ${product.price}, '${product.image_url}')" 
+                            data-id="${product.id}"
+                            data-name="${product.name}"
+                            data-price="${product.price}"
+                            data-image="${product.image_url}">
+                        В корзину
+                    </button>
+                </div>
+            `).join('');
+            
+            console.log('Товары успешно отображены');
+        } catch (error) {
+            console.error('Ошибка при загрузке товаров:', error);
+        }
     }
 
     displayProducts();
@@ -246,13 +271,18 @@ function handleOrderSubmit(e) {
 }
 
 // Функции для работы с API товаров
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'http://localhost:3000/api';  // Убедитесь, что этот URL правильный
 
 // Получить все товары
 async function getProducts() {
     try {
+        console.log('Запрос товаров из API...');
         const response = await fetch(`${API_URL}/products`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const products = await response.json();
+        console.log('Получены товары:', products);
         return products;
     } catch (error) {
         console.error('Ошибка при получении товаров:', error);
@@ -293,6 +323,7 @@ async function addProduct(productData) {
 // Обновить существующий товар
 async function updateProduct(id, productData) {
     try {
+        console.log('Отправка запроса на обновление:', id, productData); // Добавляем логирование
         const response = await fetch(`${API_URL}/products/${id}`, {
             method: 'PUT',
             headers: {
@@ -301,6 +332,11 @@ async function updateProduct(id, productData) {
             body: JSON.stringify(productData)
         });
         const result = await response.json();
+        console.log('Ответ от сервера:', result); // Добавляем логирование
+        
+        // После успешного обновления, обновляем отображение товаров на странице
+        await displayProducts();
+        
         return result;
     } catch (error) {
         console.error('Ошибка при обновлении товара:', error);

@@ -6,7 +6,11 @@ const app = express();
 const port = 3000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: ['http://127.0.0.1:5500', 'http://localhost:5500'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}));
 app.use(express.json());
 app.use(express.static('.')); // Serve static files from current directory
 
@@ -142,63 +146,57 @@ app.get('/api/products/:id', (req, res) => {
 // Обновить продукт
 app.put('/api/products/:id', (req, res) => {
     const id = req.params.id;
-    const { 
-        name, 
-        article, 
-        price, 
-        old_price, 
-        category, 
-        brand, 
-        description, 
-        specifications, 
-        volume, 
-        weight, 
-        color, 
-        coverage_area, 
-        drying_time, 
-        shelf_life, 
-        application_method, 
-        surface_type, 
-        stock_quantity, 
-        image_url, 
-        is_available 
-    } = req.body;
-    db.run(
-        'UPDATE products SET name = ?, article = ?, price = ?, old_price = ?, category = ?, brand = ?, description = ?, specifications = ?, volume = ?, weight = ?, color = ?, coverage_area = ?, drying_time = ?, shelf_life = ?, application_method = ?, surface_type = ?, stock_quantity = ?, image_url = ?, is_available = ? WHERE id = ?',
-        [ 
-            name, 
-            article, 
-            price, 
-            old_price, 
-            category, 
-            brand, 
-            description, 
-            specifications, 
-            volume, 
-            weight, 
-            color, 
-            coverage_area, 
-            drying_time, 
-            shelf_life, 
-            application_method, 
-            surface_type, 
-            stock_quantity, 
-            image_url, 
-            is_available, 
-            id 
-        ],
-        function(err) {
+    console.log('Получен PUT запрос для ID:', id);
+    console.log('Данные для обновления:', req.body);
+
+    const updateFields = [];
+    const updateValues = [];
+    
+    // Динамически формируем SQL запрос только для тех полей, которые были переданы
+    Object.entries(req.body).forEach(([key, value]) => {
+        updateFields.push(`${key} = ?`);
+        updateValues.push(value);
+    });
+    
+    // Добавляем updated_at
+    updateFields.push('updated_at = CURRENT_TIMESTAMP');
+    
+    // Добавляем id в конец массива значений
+    updateValues.push(id);
+    
+    const updateQuery = `
+        UPDATE products 
+        SET ${updateFields.join(', ')} 
+        WHERE id = ?
+    `;
+    
+    console.log('SQL запрос:', updateQuery);
+    console.log('Значения:', updateValues);
+
+    db.run(updateQuery, updateValues, function(err) {
+        if (err) {
+            console.error('Error updating product:', err);
+            res.status(500).json({ error: err.message });
+            return;
+        }
+        if (this.changes === 0) {
+            res.status(404).json({ error: 'Product not found' });
+            return;
+        }
+        
+        // Получаем обновленный продукт
+        db.get('SELECT * FROM products WHERE id = ?', [id], (err, product) => {
             if (err) {
                 res.status(500).json({ error: err.message });
                 return;
             }
-            if (this.changes === 0) {
-                res.status(404).json({ error: 'Product not found' });
-                return;
-            }
-            res.json({ message: 'Product updated successfully' });
-        }
-    );
+            console.log('Обновленный продукт:', product);
+            res.json({
+                message: 'Product updated successfully',
+                product: product
+            });
+        });
+    });
 });
 
 // Удалить продукт
@@ -224,6 +222,8 @@ app.use((err, req, res, next) => {
 });
 
 // Запуск сервера
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-});
+if (!module.parent) {
+    app.listen(port, () => {
+        console.log(`Server is running on http://localhost:${port}`);
+    });
+}
