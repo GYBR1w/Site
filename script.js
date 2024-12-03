@@ -47,6 +47,26 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Функция для отображения товаров на странице
+    async function displayProducts() {
+        const productsGrid = document.querySelector('.products-grid');
+        if (!productsGrid) return;
+
+        const products = await getProducts();
+        
+        productsGrid.innerHTML = products.map(product => `
+            <div class="product-card" data-id="${product.id}">
+                <img src="${product.image_url}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p class="product-description">${product.description}</p>
+                <p class="product-price">${product.price} ₽</p>
+                <button class="add-to-cart-btn" onclick="addToCart(${product.id})">В корзину</button>
+            </div>
+        `).join('');
+    }
+
+    displayProducts();
 });
 
 // Добавление товара в корзину
@@ -223,4 +243,81 @@ function handleOrderSubmit(e) {
     setTimeout(() => {
         window.location.href = 'index.html';
     }, 3000);
+}
+
+// Функции для работы с API товаров
+const API_URL = 'http://localhost:3000/api';
+
+// Получить все товары
+async function getProducts() {
+    try {
+        const response = await fetch(`${API_URL}/products`);
+        const products = await response.json();
+        return products;
+    } catch (error) {
+        console.error('Ошибка при получении товаров:', error);
+        return [];
+    }
+}
+
+// Получить один товар по ID
+async function getProduct(id) {
+    try {
+        const response = await fetch(`${API_URL}/products/${id}`);
+        const product = await response.json();
+        return product;
+    } catch (error) {
+        console.error('Ошибка при получении товара:', error);
+        return null;
+    }
+}
+
+// Добавить новый товар
+async function addProduct(productData) {
+    try {
+        const response = await fetch(`${API_URL}/products`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(productData)
+        });
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.error('Ошибка при добавлении товара:', error);
+        return null;
+    }
+}
+
+// Обновить существующий товар
+async function updateProduct(id, productData) {
+    try {
+        const response = await fetch(`${API_URL}/products/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(productData)
+        });
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.error('Ошибка при обновлении товара:', error);
+        return null;
+    }
+}
+
+// Удалить товар
+async function deleteProduct(id) {
+    try {
+        const response = await fetch(`${API_URL}/products/${id}`, {
+            method: 'DELETE'
+        });
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.error('Ошибка при удалении товара:', error);
+        return null;
+    }
 }
